@@ -2,7 +2,7 @@ name: sync-to-dev
 on:
   push:
     branches:
-      - feature
+      - feature1
 jobs:
   push-test:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo "Branch name is $BRANCH_NAME!" 
           git checkout main
-          git rebase feature main
+          git rebase feature1 main
           git push origin main
           
     
