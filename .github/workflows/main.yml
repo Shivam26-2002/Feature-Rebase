@@ -25,7 +25,8 @@ jobs:
           git checkout main
           git rebase --onto feature1 main
           # git pull origin main
-          git config --global pull.rebase true 
+          # git config --global pull.rebase true 
+          git pull --rebase origin main
           git push origin main
           
     
