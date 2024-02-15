@@ -24,6 +24,7 @@ jobs:
           echo "Branch name is $BRANCH_NAME!" 
           git checkout main
           git rebase --onto feature1 main
+          git pull origin main
           git push origin main
           
     
