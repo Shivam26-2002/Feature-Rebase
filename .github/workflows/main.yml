@@ -28,4 +28,6 @@ jobs:
           echo "2"
           git checkout main
           git rebase --onto $BRANCH_NAME origin/main
-          # git push 
+          echo "3"
+          git push origin/main
+          echo "4"
