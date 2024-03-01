@@ -22,13 +22,13 @@ jobs:
           git fetch origin
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo "Branch name is $BRANCH_NAME!" 
-          git checkout main
-          git rebase --onto feature1 main
-          # git pull origin main
-          # git config --global pull.rebase true 
-          git pull --rebase origin main
           git checkout feature1
           git rebase --onto main feature1
+          # git pull origin main
+          # git config --global pull.rebase true 
+          # git pull --rebase origin main
+          git checkout main
+          git rebase --onto feature1 main
           git push
           
     
