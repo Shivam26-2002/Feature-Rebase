@@ -2,34 +2,32 @@ name: sync-to-dev
 on:
   push:
     branches:
-      - feature1
+      - feature
 jobs:
   push-test:
     runs-on: ubuntu-latest
     steps:
        - name: Checkout code
          uses: actions/checkout@v2
-       - name: Dump GitHub context
-         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-         run: echo "$GITHUB_CONTEXT"
-       - name: Rebase through push
-         env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+            fetch-depth: 0
+       - name: Rebase 
          run: |
           git config --global user.email github-actions@github.com
           git config --global user.name github-actions
-          git fetch origin
+          
+          # git fetch origin
+          
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo "Branch name is $BRANCH_NAME!" 
-          git checkout feature1
-          git rebase --onto main feature1
+          
+          git checkout $BRANCH_NAME
+          git rebase --onto main $BRANCH_NAME
+          
           # git pull origin main
           # git config --global pull.rebase true 
           # git pull --rebase origin main
-          git checkout main
-          git rebase --onto feature1 main
-          git push origin main
           
-    
-      
+          git checkout main
+          git rebase --onto $BRANCH_NAME main
+          git push 
