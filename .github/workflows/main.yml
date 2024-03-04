@@ -18,15 +18,15 @@ jobs:
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           git checkout feature
           echo "0"
-          git rebase origin/main
+          git rebase --onto origin/main feature
           echo "1"
           # git pull origin main
           # git config --global pull.rebase true 
           # git pull --rebase origin main
           echo "2"
           git checkout main
-          # git rebase --onto $BRANCH_NAME origin/main
-          git rebase feature
+          git rebase --onto feature origin/main
+          # git rebase feature
           echo "3"
           git push origin main
           echo "4"
